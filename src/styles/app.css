@@ -1,0 +1,16 @@
+.app {
+  --theme-text-color: #000000;
+  --theme-background-color: #ffffff;
+  --theme-painting-background: #f2f2f2;
+  background: var(--theme-background-color);
+  color: var(--theme-text-color);
+  min-width: 320px;
+  min-height: 100vh;
+  padding: 0 0 200px;
+}
+
+.app--theme-dark {
+  --theme-text-color: #ffffff;
+  --theme-background-color: #000000;
+  --theme-painting-background: #262626;
+}

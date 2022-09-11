@@ -1,0 +1,18 @@
+@media (max-width: 767px) {
+  .layout-filters {
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+  }
+}
+
+@media (min-width: 768px) {
+  .layout-filters {
+    display: flex;
+    column-gap: 2%;
+  }
+
+  .layout-filters__item {
+    width: 23.5%;
+  }
+}

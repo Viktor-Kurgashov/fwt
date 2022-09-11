@@ -1,0 +1,34 @@
+.painting {
+  background-color: var(--theme-painting-background);
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 4px;
+  position: relative;
+  padding-top: 75%;
+}
+
+.painting__caption-mount {
+  border-radius: 0 0 4px 4px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  overflow-y: hidden;
+}
+
+.painting__caption {
+  color: black;
+  background: rgba(255, 255, 255, 0.75);
+  transform: translate(0, calc(100% - 48px));
+  transition: transform 0.2s;
+  padding: 10px 16px 13px;
+}
+
+.painting:hover .painting__caption {
+  transform: translate(0, 0);
+}
+
+.painting__caption > p {
+  margin-top: 4px;
+}

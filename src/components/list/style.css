@@ -1,0 +1,30 @@
+@media (max-width: 767px) {
+  .list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+  }
+}
+
+@media (min-width: 768px) {
+  .list {
+    display: flex;
+    flex-flow: row wrap;
+    column-gap: 4%;
+    row-gap: 35px;
+  }
+
+  .list__item {
+    width: 48%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .list {
+    column-gap: 2%;
+  }
+
+  .list__item {
+    width: 32%;
+  }
+}
