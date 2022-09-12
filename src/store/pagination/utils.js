@@ -1,3 +1,10 @@
+// создаёт объект ссылок для пагинации формата:
+// { route: '/search?_page=2', title: '2' } для активных ссылок
+// добавляет .current для текущей страницы
+// массив .stack для нумерованных ссылок (3шт)
+// null вместо {} для выключенной ссылки (стрелки)
+// параметры: (location.pathname, location.search, текущая страница и их количество)
+
 function createLinks(pathname, search, current, last) {
   search = new URLSearchParams(search);
 

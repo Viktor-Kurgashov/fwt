@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import propTypes from 'prop-types';
 import './style.css';
 
+// компонент для сообщений об ошибке при загрузке картин
+//
 const Error = ({ title, refresh, back }) => {
   const navigate = useNavigate();
 
@@ -19,8 +21,8 @@ const Error = ({ title, refresh, back }) => {
 
 Error.propTypes = {
   title: propTypes.string,
-  back: propTypes.bool,
-  refresh: propTypes.bool,
+  back: propTypes.bool, // показать кнопку "назад"
+  refresh: propTypes.bool, // показать кнопку "обновить"
 };
 
 Error.defaultProps = {

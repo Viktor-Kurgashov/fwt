@@ -1,3 +1,5 @@
+// хук для закрытия выпадающих селектов при клике за их пределами
+// 
 function useDropdownCloseListener (componentSelector, closingFunction) {
   const obj = {
     close: event => {

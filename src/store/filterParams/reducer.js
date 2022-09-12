@@ -9,6 +9,9 @@ const initialState = {
 function reducer(state = initialState, action) {
   switch (action.type) {
 
+    // вызывается из actionsFilterParams.handleRoute
+    // присваивает весь объект параметров фильтра с новыми значениями
+    //
     case 'filterParams/setParams':
       return action.payload;
 

@@ -2,23 +2,25 @@ import { getFetchState } from './utils';
 
 const initialState = {
   pageItems: [],
-  fetchState: getFetchState(),
+  fetchState: getFetchState(), // { loading, error, empty, ok }
   config: {
     APIUrl: 'https://test-front.framework.team',
     limit: 12,
   },
-  themeDark: false,
+  themeDark: false, // просто не знал куда приткнуть эту переменную
 };
 
 function reducer(state = initialState, action) {
   switch (action.type) {
 
+    // загрузка картин, накидывает blur поверх каталога
     case 'catalog/load':
       return {
         ...state,
         fetchState: getFetchState(),
       };
 
+    // ошибка при загрузке, выводит ошибку
     case 'catalog/load-error':
       return {
         ...state,
@@ -33,6 +35,7 @@ function reducer(state = initialState, action) {
         fetchState: getFetchState('ok'),
       };
 
+    // ошибка при загрузке, выводит ошибку
     case 'catalog/load-empty':
       return {
         ...state,

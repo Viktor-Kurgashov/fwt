@@ -2,9 +2,11 @@ const actionsCatalog = {
   fetchPageItems: (search) => { // location.search
     return async (dispatch, getState) => {
       dispatch({ type: 'catalog/load' });
+      // индикатор загрузки поверх страницы
 
       if (search === '') search = '?_page=1';
-      let pagesNumber = 1;  
+      let pagesNumber = 1;
+      // извлекает текущую страницу из location.search, сохранится в store.pagination
       const currentPage = /_page=/.test(search) ? +search.match(/_page=(\d+)/)[1] : 1;
 
       const APIUrl = getState().catalog.config.APIUrl;
@@ -15,12 +17,14 @@ const actionsCatalog = {
         .then(res => {
           if (res.ok) {
             const Link = res.headers.get("Link");
+            // извлекает количество страниц из заголовка ответа, сохранится в store.pagination
             pagesNumber = +Link.match(/page=(\d+)[^"]+"last/)?.[1] || 1;
             return res.json();
           }
           else throw new Error(res.status + ' ' + res.statusText);
         })
         .then(json => {
+          // с текущими параметрами фильтрами ничего не найдено
           if (!json.length) {
             dispatch({ type: 'catalog/load-empty' });
             dispatch({ type: 'pagination/reset' });

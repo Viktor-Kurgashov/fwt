@@ -7,18 +7,17 @@ import './style.css';
 
 const DropdownRange = ({ from, to, updateFrom, updateTo, clearRange }) => {
   const [opened, setOpened] = useState(false);
-
+  // хук для закрытия выпадающих селектов при клике за их пределами
   const closeListener = useDropdownCloseListener('.dropdown-range', () => setOpened(false));
 
   const [state, setState] = useState({
-    timerFrom: null,
+    timerFrom: null, 
     innerFrom: '',
     timerTo: null,
-    innerTo: '',
   });
 
   useEffect(() => setState(prev => ({ ...prev, innerFrom: from, })), [from]);
-
+  // после поиска обновляется значение в сторе, оно и обновляет внутреннее
   useEffect(() => setState(prev => ({ ...prev, innerTo: to, })), [to]);
 
 
@@ -26,6 +25,7 @@ const DropdownRange = ({ from, to, updateFrom, updateTo, clearRange }) => {
   const callbacks = {
     toggleList: useCallback(() => {
       if (opened) {
+        // закрыть список, снять закрывающий eventListener
         setOpened(false);
         closeListener.remove();
       } else {
@@ -35,11 +35,14 @@ const DropdownRange = ({ from, to, updateFrom, updateTo, clearRange }) => {
     }, [opened, closeListener]),
 
     delayUpdateFrom: useCallback(event => {
+      // сброс таймера отложенного поиска
       clearTimeout(state.timerFrom);
       setState(current => ({
         ...current,
+        // обновление внутреннего значения
         innerFrom: event.target.value,
         timerFrom: setTimeout(() => {
+          // новый отложенный поиск и закрытие выпадашки
           updateFrom(event.target.value);
           setOpened(false);
         }, 2000),
@@ -95,7 +98,7 @@ DropdownRange.propTypes = {
   to: propTypes.string,
   updateFrom: propTypes.func,
   updateTo: propTypes.func,
-  clearRange: propTypes.func,
+  clearRange: propTypes.func, // отдельная функция для сброса обоих значений
 };
 
 export default React.memo(DropdownRange);

@@ -1,5 +1,9 @@
 const actionsFilterParams = {
-  handleRoute: (search) => { // location.search
+  // извлекает параметры фильтра из route и сохраняет в store
+  // вызывается при каждой перезагрузке страницы
+  // search === location.search
+  //
+  handleRoute: (search) => {
     return (dispatch, getState) => {
 
       search = new URLSearchParams(search);

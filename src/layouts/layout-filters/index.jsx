@@ -2,6 +2,7 @@ import React, { Children } from 'react';
 import propTypes from 'prop-types';
 import './style.css';
 
+// контейнер для элементов фильтра
 const LayoutFilter = ({ children }) => {
   const arrayChildren = Children.toArray(children);
 

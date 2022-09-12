@@ -1,3 +1,7 @@
+// функции для переключения параметров фильтра
+// возвращают изменённый location.search
+// далее в компоненте редирект на новый route
+
 const toggleFilter = (search, param, value) => {
   search = new URLSearchParams(search);
 
@@ -10,6 +14,7 @@ const toggleFilter = (search, param, value) => {
   return search.toString();
 };
 
+// сброс обоих параметров в Range
 const clearRange = (search) => {
   search = new URLSearchParams(search);
 

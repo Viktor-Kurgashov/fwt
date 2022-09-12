@@ -8,24 +8,27 @@ import './style.css';
 const Select = ({ data, value, update, placeholder }) => {
   const [opened, setOpened] = useState(false);
   const [title, setTitle] = useState('');
-
+  // хук для закрытия выпадающих селектов при клике за их пределами
   const closeListener = useDropdownCloseListener('.custom-select', () => setOpened(false));
 
+  // обновляет заголовок кастомного селекта, при обновлении стора, после поиска
   useEffect(() => setTitle(
     (data.length && value) ? data.find(item => item.id.toString() === value).value : false
   ), [data, value]);
 
-  useEffect(() => {
-    return () => closeListener.remove();
-  }, []);
+  // снимает eventListener для закрытия выпадашки, зачем-то)
+  useEffect(() => () => closeListener.remove(), []);
 
 
 
   const callbacks = {
     select: useCallback(event => {
       if (event.target.value !== value) {
+        // переключение фильтра в родительском компоненте
         update(event.target.value);
+        // закрыть выпадающий селект
         setOpened(false);
+        // снимает eventListener закрытия выпадашки
         closeListener.remove();
       }
     }, [value, update, closeListener]),

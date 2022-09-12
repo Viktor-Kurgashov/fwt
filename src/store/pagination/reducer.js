@@ -13,6 +13,7 @@ const initialState = {
 function reducer(state = initialState, action) {
   switch (action.type) {
 
+    // вызывается при успешной загрузке картин
     case 'pagination/set':
       return {
         ...state,
@@ -27,6 +28,7 @@ function reducer(state = initialState, action) {
         ),
       };
 
+    // ошибка при загрузке картин
     case 'pagination/clear':
       return {
         ...state,

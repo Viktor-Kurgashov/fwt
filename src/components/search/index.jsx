@@ -10,10 +10,14 @@ const Search = ({ value, update, placeholder }) => {
 
   const callbacks= {
     delayUpdate: useCallback(event => {
+      // сброс таймера отложенного поиска
       clearTimeout(timerId);
+      // обновление внутреннего значения
       setInnerValue(event.target.value);
       const newValue = event.target.value.trim();
+      // поиск очищен backspase'ом
       if (!newValue && value) setTimerId(setTimeout(() => update(''), 2000));
+      // просто поиск, сделано чтобы не отправлять одни пробелы
       else if (newValue !== value) setTimerId(setTimeout(() => update(newValue), 2000));
     }, [timerId, value, update]),
 

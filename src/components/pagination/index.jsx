@@ -35,7 +35,7 @@ const Pagintation = ({ links }) => {
 };
 
 Pagintation.propTypes = {
-  links: propTypes.object.isRequired,
+  links: propTypes.object.isRequired, // объект ссылок создаётся в сторе
 };
 
 export default React.memo(Pagintation);

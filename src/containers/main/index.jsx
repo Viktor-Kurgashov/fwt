@@ -25,15 +25,19 @@ const Main = () => {
     dependiesLoaded: state.filterOptions.dependiesLoaded,
   }));
 
+  // извлекает параметры фильтра из route, сохраняет в соответсвующий стор
   useEffect(() => {
     dispatch(actionsFilterParams.handleRoute(location.search));
   }, [location, dispatch]);
 
+  // загрузка картин на странице, не начинается пока не загружены authors
+  // и locations, необходимые для обработки массива картин
   useEffect(() => {
     if (select.dependiesLoaded) dispatch(actionsCatalog.fetchPageItems(location.search));
   }, [select.dependiesLoaded, location, dispatch]);
 
   const renders = {
+    // функция рендера, которая передаётся в компонент списка
     painting: useCallback(item => (<Painting item={item} />), []),
   };
 
